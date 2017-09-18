@@ -1,0 +1,13 @@
+Answers to lab prep:
+    1. clock & user input
+
+    2. Clock -> Monitor(incTime, setTime) <- ButtonThread. The data needs to be stored in monitor.
+
+    3. Clock logic inside incTime, and user input logic inside setTime.
+
+    4. Time and alarmsettings. 
+
+    5. Hardware/Simulator and ButtonThread. We can't push buttons at the same time.
+
+    6. page 42.
+
