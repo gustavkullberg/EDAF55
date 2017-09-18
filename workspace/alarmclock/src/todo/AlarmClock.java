@@ -47,7 +47,7 @@ public class AlarmClock {
 	 */
 	public void terminate() {
 		// Do something more clever here...
-		//output.console("AlarmClock exit.");
+		// output.console("AlarmClock exit.");
 	}
 
 	/**
@@ -83,21 +83,22 @@ public class AlarmClock {
 		mutex.take();
 		++ssssss;
 		output.showTime(toHHMMSS(ssssss));
-		
-		if(toHHMMSS(ssssss) == alarmTime && alarmFlag == true) {
+
+		if (toHHMMSS(ssssss) == alarmTime && alarmFlag == true) {
 			alarmCounter = 20;
 		}
-		
-		if(alarmCounter > 0) {
+
+		if (alarmCounter > 0) {
 			output.doAlarm();
 			--alarmCounter;
 		}
-		
+
 		mutex.give();
 	}
+
 	public void handleAlarm(boolean alarmFlag) {
-		if(alarmFlag == true)
-			alarmCounter = 0; 
+		if (alarmFlag == true)
+			alarmCounter = 0;
 	}
 
 	private int toHHMMSS(int secs) {
@@ -123,22 +124,21 @@ public class AlarmClock {
 			this.time = time;
 		}
 
-		
 		public void run() {
 			while (!Thread.currentThread().isInterrupted()) {
-				signal.take();			
-					alarmFlag = input.getAlarmFlag();
-					newState = input.getChoice();
-					
-					handleAlarm(alarmFlag);
+				signal.take();
+				alarmFlag = input.getAlarmFlag();
+				newState = input.getChoice();
 
-					if (newState != prevState) {
-						if (prevState == input.SET_TIME)
-							setTime(input.getValue());
-						if (prevState == input.SET_ALARM)
-							setAlarm(input.getValue());
-					}
-					prevState = newState;
+				handleAlarm(alarmFlag);
+
+				if (newState != prevState) {
+					if (prevState == input.SET_TIME)
+						setTime(input.getValue());
+					if (prevState == input.SET_ALARM)
+						setAlarm(input.getValue());
+				}
+				prevState = newState;
 			}
 		}
 
@@ -150,7 +150,6 @@ public class AlarmClock {
 			super();
 		}
 
-		
 		public void run() {
 			long t, diff;
 			t = System.currentTimeMillis();
